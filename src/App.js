@@ -8,6 +8,8 @@ import All from "./pages/All";
 import BigMap from "./pages/BigMap";
 import Like from "./pages/Like";
 import MainPage from "./pages/MainPage";
+import Detail from "./components/Detail";
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* 
@@ -28,17 +30,15 @@ function App() {
     const res = await axios.get(
       "https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList"
     );
-    // console.log(res);
     if (res.status) {
       const result = res.data.resultSummary;
       setData(result);
-      // console.log(result);
     }
   }
   useEffect(() => {
     api();
   }, []);
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="App">
@@ -48,6 +48,7 @@ function App() {
         <Route path="/all" element={<All data={data} />} />
         <Route path="/map" element={<BigMap />} />
         <Route path="/like" element={<Like />} />
+        <Route path="/detail/:id" element={<Detail data={data} />} />
       </Routes>
     </div>
   );

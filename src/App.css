@@ -64,5 +64,19 @@ nav {
 .nav-link:hover {
   background-color: beige;
 }
-
+.go-back {
+  cursor: pointer;
+  font-size: 40px;
+  position: fixed;
+  left: 5px;
+}
 /* all페이지///////////////// */
+
+
+/* 디테일페이지 */
+.detail-parent{
+  text-align: center;
+}
+.empty-box {
+  margin-bottom: 50px;
+}
