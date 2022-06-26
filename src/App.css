@@ -38,13 +38,39 @@ i {
 
 nav {
   border-bottom: 1px solid #000;
+  height: 10vh;
+
 }
 .nav-wrap {
   width: 90vw;
-  height: 5vh;
+  height: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.nav-wrap #logo {
+  display: flex;
+  align-items: center;
+}
+.nav-wrap #logo h1 {
+  position: relative;
+  left: -7%;
+}
+.nav-wrap #logo span {
+  font-size: 1.5rem;
+}
+.nav-wrap #logo .cow {
+  font-size: 1.5rem;
+  position: relative;
+  left: -8%;
+}
+.nav-wrap #logo:hover .cow {
+  display: inline-block;
+  transition: 0.3s;
+  transform: rotate(60deg);
+  left: -9%;
+  top: -5px;
 }
 .nav {
   display: flex;
@@ -70,6 +96,8 @@ nav {
   position: fixed;
   left: 5px;
 }
+
+
 /* all페이지///////////////// */
 
 

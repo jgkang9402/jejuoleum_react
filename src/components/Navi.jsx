@@ -8,10 +8,14 @@ const Navi = () => {
     <nav>
       <div className="nav-wrap">
         <Link to={"/"}>
-          <h1>5leum</h1>
+          <div id="logo">
+            <span>🗻</span>
+            <div className="cow">🐄</div>
+            <h1>5leum</h1>
+          </div>
         </Link>
         <div className="nav">
-          <Link to={"/all"}>
+          <Link to={"/all/0"}>
             <div className="nav-link">All</div>
           </Link>
           <Link to={"/map"}>

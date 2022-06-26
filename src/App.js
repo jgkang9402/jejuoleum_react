@@ -9,8 +9,8 @@ import BigMap from "./pages/BigMap";
 import Like from "./pages/Like";
 import MainPage from "./pages/MainPage";
 import Detail from "./components/Detail";
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import { css } from "@emotion/react";
+import BeatLoader from "react-spinners/BeatLoader";
 
 /* 
   explan: "비고 51m의 원형 화구를 가진 오름이다.  거칠지 않은 산 체와 완만한 탐방로가 있어 여유로운 분위기의 오름이다."
@@ -22,34 +22,72 @@ import Detail from "./components/Detail";
   x: "126.777283002793"
   y: "33.4488750035003"
   */
+const override = css`
+  display: block;
+  position: absolute;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  border-color: aqua;
+`;
 
 function App() {
   const [data, setData] = useState([]);
+  const [copied, setCopied] = useState([]);
 
-  async function api() {
-    const res = await axios.get(
-      "https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList"
-    );
-    if (res.status) {
-      const result = res.data.resultSummary;
-      setData(result);
-    }
-  }
+  const api = async () => {
+    const res = await axios
+      .get("https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList")
+      .then((response) => {
+        if (response.status) {
+          let result = response.data.resultSummary;
+          console.log(result);
+          if (result.length > 0) {
+            // console.log("동작");
+          }
+          console.log(result);
+          result[46].imgPath =
+            "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20141013_91%2Fjlk63_1413199771300aTtgY_JPEG%2F%25C0%25CC%25B4%25DE%25BA%25C01.JPG&type=sc960_832";
+          setData(result);
+
+          let copyArr = new Object(result);
+          console.log(copyArr);
+          let seperateData = [];
+          for (let z = 0; z < copyArr.length / 10; z++) {
+            seperateData[z] = copyArr.slice(z * 10, z * 10 + 10);
+          }
+          setCopied(seperateData);
+          console.log(seperateData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     api();
   }, []);
   // console.log(data);
 
   return (
-    <div className="App">
-      <Navi />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/all" element={<All data={data} />} />
-        <Route path="/map" element={<BigMap />} />
-        <Route path="/like" element={<Like />} />
-        <Route path="/detail/:id" element={<Detail data={data} />} />
-      </Routes>
+    <div>
+      {data.length == 0 ? (
+        <BeatLoader css={override} size={50} />
+      ) : (
+        <div className="App">
+          <Navi />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route
+              path="/all/:id"
+              element={<All data={data} copied={copied} />}
+            />
+            <Route path="/map" element={<BigMap data={data}/>} />
+            <Route path="/like" element={<Like />} />
+            <Route path="/detail/:id" element={<Detail data={data} />} />
+          </Routes>
+        </div>
+      )}
     </div>
   );
 }

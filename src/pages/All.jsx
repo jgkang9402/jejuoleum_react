@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 let GridUl = styled.ul`
@@ -17,25 +18,51 @@ let ItemLi = styled.li`
 let ItemImg = styled.img`
   width: 100%;
 `;
+let PageOl = styled.ol`
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+`;
+let PageBtn = styled.li`
+  margin-right: 10px;
+  font-size: 2rem;
+  border: 1px solid #000;
+  text-align: center;
+  width: 2.5rem;
+`;
 
-const All = ({ data }) => {
-  useEffect(()=>{
-    console.log(123);
-  },[])
+const All = ({ data, copied }) => {
+  const [pageList, setPageList] = useState([]);
+  let { id } = useParams();
+
+  const pagenation = () => {
+    let arr = [];
+    for (let num = 0; num < copied.length; num++) {
+      arr.push(num);
+    }
+    console.log(arr);
+    setPageList(arr);
+  };
+  useEffect(() => {
+    console.log(id);
+
+    pagenation();
+  }, []);
   return (
     <div className="all_page">
       <GridUl>
-        {data.map((item, idx) => {
+        {copied[id].map((item, idx) => {
           return (
             <Link to={`/detail/${idx}`} key={item.oleumEname}>
               <ItemLi>
-                <ItemImg
+                <ItemImg src={item.imgPath} />
+                {/* <ItemImg
                   src={
                     idx == 46
                       ? "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20141013_91%2Fjlk63_1413199771300aTtgY_JPEG%2F%25C0%25CC%25B4%25DE%25BA%25C01.JPG&type=sc960_832"
                       : item.imgPath
                   }
-                />
+                /> */}
                 <h1>{item.oleumKname}</h1>
                 <p>{item.oleumAddr}</p>
               </ItemLi>
@@ -43,6 +70,15 @@ const All = ({ data }) => {
           );
         })}
       </GridUl>
+      <PageOl>
+        {pageList.map((item) => {
+          return (
+            <Link to={`/all/${item}`} key={item}>
+              <PageBtn>{item + 1}</PageBtn>
+            </Link>
+          );
+        })}
+      </PageOl>
     </div>
   );
 };
