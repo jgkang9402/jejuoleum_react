@@ -11,8 +11,8 @@ const Detail = ({ data }) => {
   const goBack = () => {
     navigate(-1);
   };
-  console.log(xy);
-  console.log(data[id]);
+  // console.log(xy);
+  // console.log(data[id]);
 
   const toTheTop = () => {
     window.scrollTo({

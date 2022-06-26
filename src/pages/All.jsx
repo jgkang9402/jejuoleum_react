@@ -21,7 +21,7 @@ let ItemImg = styled.img`
 let PageOl = styled.ol`
   display: flex;
   justify-content: center;
-  margin-top: 5vh;
+  margin: 5vh 0;
 `;
 let PageBtn = styled.li`
   margin-right: 10px;
@@ -35,6 +35,10 @@ const All = ({ data, copied }) => {
   const [pageList, setPageList] = useState([]);
   let { id } = useParams();
 
+  const pushIdx = () => {
+
+  };
+
   const pagenation = () => {
     let arr = [];
     for (let num = 0; num < copied.length; num++) {
@@ -43,17 +47,18 @@ const All = ({ data, copied }) => {
     console.log(arr);
     setPageList(arr);
   };
+
   useEffect(() => {
     console.log(id);
-
     pagenation();
+    pushIdx();
   }, []);
   return (
     <div className="all_page">
       <GridUl>
         {copied[id].map((item, idx) => {
           return (
-            <Link to={`/detail/${idx}`} key={item.oleumEname}>
+            <Link to={`/detail/${item.oleumAltitu}`} key={item.oleumEname}>
               <ItemLi>
                 <ItemImg src={item.imgPath} />
                 {/* <ItemImg
