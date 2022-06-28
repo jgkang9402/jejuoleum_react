@@ -44,7 +44,12 @@ const SmallMap = ({ xy }) => {
     <div>
       <div
         id="map"
-        style={{ width: "600px", height: "350px", border: "1px solid" }}
+        style={{
+          width: "600px",
+          height: "350px",
+          border: "1px solid",
+          margin: "0 auto",
+        }}
       ></div>
     </div>
   );

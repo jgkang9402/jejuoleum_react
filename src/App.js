@@ -11,6 +11,7 @@ import MainPage from "./pages/MainPage";
 import Detail from "./components/Detail";
 import { css } from "@emotion/react";
 import BeatLoader from "react-spinners/BeatLoader";
+import VisitWrite from "./components/VisitWrite";
 
 /* 
   explan: "비고 51m의 원형 화구를 가진 오름이다.  거칠지 않은 산 체와 완만한 탐방로가 있어 여유로운 분위기의 오름이다."
@@ -87,7 +88,8 @@ function App() {
             />
             <Route path="/map" element={<BigMap data={data} />} />
             <Route path="/like" element={<Like />} />
-            <Route path="/detail/:id" element={<Detail data={data} />} />
+            <Route path="/detail/:id" element={<Detail data={data}/>} />
+            {/* <Route path="/write/:px" element={<VisitWrite data={data}/>}/> */}
           </Routes>
         </div>
       )}

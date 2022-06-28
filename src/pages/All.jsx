@@ -21,7 +21,7 @@ let ItemImg = styled.img`
 let PageOl = styled.ol`
   display: flex;
   justify-content: center;
-  margin: 5vh 0;
+  margin: 2.5vh 0;
 `;
 let PageBtn = styled.li`
   margin-right: 10px;

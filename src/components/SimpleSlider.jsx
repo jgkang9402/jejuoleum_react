@@ -14,6 +14,8 @@ const SimpleSlider = ({ copied }) => {
     slidesToScroll: 1,
     arrows: false,
     centerMode: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
   };
   useEffect(() => {
     console.log(copied);

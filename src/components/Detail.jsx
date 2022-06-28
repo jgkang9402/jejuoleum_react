@@ -1,10 +1,20 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, Routes, Route } from "react-router-dom";
 import SmallMap from "./SmallMap";
 import styled from "styled-components";
+import VisitWrite from "./VisitWrite";
+import { useState } from "react";
+const AddPost = styled.button`
+  position: absolute;
+  /* display: inline-block; */
+  right: 8%;
+  margin-top: 10px;
+  cursor: pointer;
+`;
 
 const Detail = ({ data }) => {
   let { id } = useParams();
+  const [modal, setModal] = useState(false);
   const xy = [data[id].x, data[id].y];
   // const xy = `${data[id].x,data[id].y}`
   const navigate = useNavigate();
@@ -13,18 +23,32 @@ const Detail = ({ data }) => {
   };
   // console.log(xy);
   // console.log(data[id]);
+  const showWrite = () => {
+    setModal(true);
+    // navigate(`/write/${id}`)
+  };
 
   const toTheTop = () => {
     window.scrollTo({
       top: 0,
     });
   };
-  useEffect(()=>{
-    toTheTop()
-  },[])
+  useEffect(() => {
+    toTheTop();
+  }, []);
+  useEffect(() => {
+    console.log(modal);
+  }, [modal]);
 
   return (
     <div className="detail-parent">
+      <div>
+        {modal ? (
+          <VisitWrite data={data[id]} setModal={setModal} />
+        ) : (
+          <AddPost onClick={showWrite}>글쓰기</AddPost>
+        )}
+      </div>
       <span className="go-back" onClick={goBack}>
         🔙
       </span>
