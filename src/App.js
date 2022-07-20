@@ -38,7 +38,7 @@ function App() {
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const api = async () => {
     const res = await axios
-      .get(`${PROXY}https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList`)
+      .get(`${PROXY}/https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList`)
       .then((response) => {
         if (response.status) {
           let result = response.data.resultSummary;
