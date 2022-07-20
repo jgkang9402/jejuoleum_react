@@ -35,9 +35,10 @@ function App() {
   const [data, setData] = useState([]);
   const [copied, setCopied] = useState([]);
 
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const api = async () => {
     const res = await axios
-      .get("https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList")
+      .get(`${PROXY}https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList`)
       .then((response) => {
         if (response.status) {
           let result = response.data.resultSummary;
@@ -81,14 +82,14 @@ function App() {
         <div className="App">
           <Navi />
           <Routes>
-            <Route path="/" element={<MainPage copied={copied}/>} />
+            <Route path="/" element={<MainPage copied={copied} />} />
             <Route
               path="/all/:id"
               element={<All data={data} copied={copied} />}
             />
             <Route path="/map" element={<BigMap data={data} />} />
             <Route path="/like" element={<Like />} />
-            <Route path="/detail/:id" element={<Detail data={data}/>} />
+            <Route path="/detail/:id" element={<Detail data={data} />} />
             {/* <Route path="/write/:px" element={<VisitWrite data={data}/>}/> */}
           </Routes>
         </div>
