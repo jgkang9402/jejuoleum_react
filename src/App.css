@@ -118,7 +118,7 @@ nav {
   width: 90%;
   margin: 0 auto;
 }
-h4 {
+.visit-item h4 {
   font-size: 2rem;
   width: 10%;
 }
