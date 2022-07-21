@@ -44,12 +44,12 @@ const All = ({ data, copied }) => {
     for (let num = 0; num < copied.length; num++) {
       arr.push(num);
     }
-    console.log(arr);
+    // console.log(arr);
     setPageList(arr);
   };
 
   useEffect(() => {
-    console.log(id);
+    // console.log(id);
     pagenation();
     pushIdx();
   }, []);

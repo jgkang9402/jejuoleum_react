@@ -109,3 +109,35 @@ nav {
 .empty-box {
   margin-bottom: 50px;
 }
+
+/* 라이크페이지 */
+.visit-parent{
+  margin: 5vh 0;
+}
+.visit-wrap {
+  width: 90%;
+  margin: 0 auto;
+}
+h4 {
+  font-size: 2rem;
+  width: 10%;
+}
+.visit-item {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 30vh;
+  margin-bottom: 2vh;
+  border: 5px double #000;
+}
+.visit-img-box {
+  width: 30%;
+  height: 100%;
+}
+.visit-img-box img {
+  width: 100%;
+  height: 100%;
+}
+.visit-infobox{
+  width: 30%;
+}

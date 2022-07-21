@@ -38,8 +38,9 @@ function App() {
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const api = async () => {
     const res = await axios
-      // .get(`${PROXY}/https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList`)
-      .get(`${PROXY}/rest/JejuOleumVRImg/getOleumADetailList`)
+      // .get(`${PROXY}/https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList`) //프록시테스트 이거안됨 X
+      .get(`${PROXY}/rest/JejuOleumVRImg/getOleumADetailList`) // 프록시테스트 이거됨 O
+      // .get(`https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList`) //개발할땐이거로
       .then((response) => {
         if (response.status) {
           let result = response.data.resultSummary;

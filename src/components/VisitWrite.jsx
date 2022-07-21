@@ -1,19 +1,29 @@
 import React from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 const VisitWrite = ({ data, setModal }) => {
   let { id } = useParams();
   const navigate = useNavigate();
+  const diaryInput = useRef();
+  const copyData = data;
+  const dispatch = useDispatch();
 
-  const goBack = () => {
-    navigate(-1);
-  };
   const closeModal = (e) => {
     // e.stopPropagation()
     e.preventDefault();
     setModal(false);
+  };
+  const addVisitDiary = () => {
+    console.log(diaryInput.current.value);
+    copyData.text = diaryInput.current.value;
+    dispatch({ type: "ADD_DIARY", payload: { visitDiary: copyData } });
+    // setModal(false);
+    navigate('/like')
+
   };
   useEffect(() => {
     console.log(data);
@@ -28,9 +38,9 @@ const VisitWrite = ({ data, setModal }) => {
           ❌
         </CloseBtn>
         <h1>{data.oleumKname}</h1>
-        <TextArea></TextArea>
+        <TextArea ref={diaryInput}></TextArea>
         <div>
-          <button click="addVisitDiary">저장</button>
+          <button onClick={addVisitDiary}>저장</button>
         </div>
       </WriteBox>
     </div>

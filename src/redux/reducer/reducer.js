@@ -41,6 +41,17 @@ let initialState = {
 function reducer(state = initialState, action) {
   // console.log("action은?", action);
   // console.log(state);
+  if (action.type === "ADD_DIARY") {
+    for (let i = 0; i < state.visitDiary.length; i++) {
+      if (state.visitDiary[i].oleumEname == action.payload.visitDiary.oleumEname) {
+        state.visitDiary.splice(i, 1);
+      }
+    }
+    return {
+      ...state,
+      visitDiary: [action.payload.visitDiary, ...state.visitDiary],
+    };
+  }
 
   return { ...state };
 }
